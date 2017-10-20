@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="Day09" extends="json-default">
+
+        <result-types>
+            <result-type name="codeimg" class="com.lanou.lunch.CodeImgResult"/>
+        </result-types>
+        <action name="codeImg">
+            <result type="codeimg" name="success"/>
+        </action>
+        <action name="login" class="com.lanou.lunch.LoginAction" method="login">
+            <result name="success">/success.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+
+        <!-- 员工操作 -->
+        <action name="findDepart" class="com.lanou.action.StaffAction" method="findDepart">
+            <result name="success" type="json">
+                <param name="root">departments</param>
+            </result>
+        </action>
+        <!-- 根据部门id获得该部门下面的所有职务集合 -->
+        <action name="findPost"
+                class="com.lanou.action.StaffAction" method="findPost">
+            <result name="success" type="json">
+                <param name="root">posts</param>
+            </result>
+        </action>
+        <action name="findStaff" class="com.lanou.action.StaffAction" method="findStaff">
+            <result name="success">/list_staff.jsp</result>
+        </action>
+    </package>
+</struts>
