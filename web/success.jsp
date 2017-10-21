@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>登录成功</h1>
+<h1>添加成功</h1>
+<a href="findStaffs.action">返回到员工列表</a>
 </body>
 </html>

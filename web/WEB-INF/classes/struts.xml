@@ -6,16 +6,12 @@
 
 <struts>
     <package name="Day09" extends="json-default">
-
+        <!-- 自定义结果集 -->
         <result-types>
-            <result-type name="codeimg" class="com.lanou.lunch.CodeImgResult"/>
+            <result-type name="codeimg" class="com.lanou.utils.CodeImgResult"/>
         </result-types>
         <action name="codeImg">
             <result type="codeimg" name="success"/>
-        </action>
-        <action name="login" class="com.lanou.lunch.LoginAction" method="login">
-            <result name="success">/success.jsp</result>
-            <result name="input">/login.jsp</result>
         </action>
 
         <!-- 员工操作 -->
@@ -31,14 +27,11 @@
             <param name="root">posts</param>
         </result>
     </action>
-        <action name="findStaff" class="com.lanou.action.StaffAction" method="findStaff">
-            <result name="success">/list_staff.jsp</result>
-        </action>
-        <action name="findStaffs" class="com.lanou.action.StaffAction" method="findStaffs">
+        <action name="findStaff*" class="com.lanou.action.StaffAction" method="findStaff{1}">
             <result name="success">/list_staff.jsp</result>
         </action>
         <action name="addStaff" class="com.lanou.action.StaffAction" method="addStaff">
-            <result name="success" type="chain">findStaffs</result>
+            <result name="success">/success.jsp</result>
             <result name="input">/add.jsp</result>
         </action>
     </package>
