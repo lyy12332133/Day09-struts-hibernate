@@ -51,7 +51,6 @@
         </tr>
     </s:iterator>
 </table>
-
 <script>
     $(function () {
         $.post("${pageContext.request.contextPath}/findDepart.action",

@@ -11,7 +11,7 @@
     <title>欢迎页</title>
   </head>
   <body>
-  <a href="list_staff.jsp">跳转到员工列表</a>
+  <a href="findStaffs.action">跳转到员工列表</a>
   <a href="login.jsp">验证码</a>
   </body>
 </html>

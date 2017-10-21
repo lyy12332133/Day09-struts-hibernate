@@ -17,13 +17,13 @@ public class StaffDaoImpl extends BaseDaoImpl<Staff> implements StaffDao {
      */
 
     public List<Staff> find(Map<String, Object> params) {
-        String hql1 = "from Staff where 1=1";
-        StringBuffer stringBuffer = new StringBuffer(hql1);
+
+        String hql = "from Staff where 1=1";
+        StringBuffer stringBuffer = new StringBuffer(hql);
         Object departId = params.get("department_id");
         Object postId = params.get("post_id");
         if (!departId.equals("-1")) {
             stringBuffer.append(" and department_id like :department_id");
-
         }else {
             params.remove("department_id");
         }

@@ -34,5 +34,8 @@
         <action name="findStaff" class="com.lanou.action.StaffAction" method="findStaff">
             <result name="success">/list_staff.jsp</result>
         </action>
+        <action name="findStaffs" class="com.lanou.action.StaffAction" method="findStaffs">
+            <result name="success">/list_staff.jsp</result>
+        </action>
     </package>
 </struts>

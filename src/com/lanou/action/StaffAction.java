@@ -59,6 +59,11 @@ public class StaffAction extends ActionSupport {
         staffs = staffService.find(params);
         return SUCCESS;
     }
+    public String findStaffs(){
+        StaffService staffService = new StaffServiceImpl();
+        staffs = staffService.findAll();
+        return SUCCESS;
+    }
 
     public String getDepartId() {
         return departId;
