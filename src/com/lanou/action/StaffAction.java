@@ -8,6 +8,7 @@ import com.lanou.service.StaffService;
 import com.lanou.service.impl.DepartmentServiceImpl;
 import com.lanou.service.impl.StaffServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ServletActionContext;
 
 
 import java.util.HashMap;
@@ -21,10 +22,11 @@ import java.util.Set;
 public class StaffAction extends ActionSupport {
     private String departId;
     private String postId;
+    private String sname;
+    private String code;
     private Set<Post> posts;
     private List<Staff> staffs;
     private List<Department> departments;
-
     /**
      * 加载所有部门
      * @return 返回部门集合
@@ -56,13 +58,77 @@ public class StaffAction extends ActionSupport {
         Map<String, Object> params = new HashMap<>();
         params.put("department_id", departId);
         params.put("post_id", postId);
+        if (sname.trim().length() > 0){
+            params.put("sname",sname);
+        }
         staffs = staffService.find(params);
         return SUCCESS;
     }
+
+    /**
+     * 加载所有员工
+     * @return 返回员工集合
+     */
     public String findStaffs(){
         StaffService staffService = new StaffServiceImpl();
         staffs = staffService.findAll();
         return SUCCESS;
+    }
+
+    /**
+     * 添加员工
+     */
+    public String addStaff(){
+        DepartmentService departmentService = new DepartmentServiceImpl();
+        Department department = departmentService.findById(Integer.parseInt(departId));
+        Set<Post> posts = department.getPosts();
+        Staff staff = new Staff();
+        staff.setSname(sname);
+        staff.setDepartment(department);
+        for (Post post : posts) {
+            int pid = post.getId();
+            if (postId.equals(String.valueOf(pid))){
+                staff.setPost(post);
+            }
+        }
+        StaffService staffService = new StaffServiceImpl();
+        staffService.save(staff);
+        return SUCCESS;
+    }
+
+    /**
+     * 添加员工表单校验
+     */
+    public void validateAddStaff(){
+        if (sname.trim().length() == 0){
+            addFieldError("error","用户名不能为空");
+        }
+        if (departId.equals("-1")){
+            addFieldError("error","请选择部门");
+        }
+        if (postId.equals("-1")){
+            addFieldError("error","请选择职务");
+        }
+        Object code1 = ServletActionContext.getRequest().getSession().getAttribute("code");
+        if (!code.equalsIgnoreCase(String.valueOf(code1))){
+            addFieldError("error","验证码输入有误");
+        }
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
     public String getDepartId() {

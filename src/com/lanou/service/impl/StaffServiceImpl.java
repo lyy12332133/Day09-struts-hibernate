@@ -34,5 +34,10 @@ public class StaffServiceImpl implements StaffService{
         return staffDao.findSingle(hql,params);
     }
 
+    @Override
+    public void save(Staff staff) {
+        staffDao.save(staff);
+    }
+
 
 }

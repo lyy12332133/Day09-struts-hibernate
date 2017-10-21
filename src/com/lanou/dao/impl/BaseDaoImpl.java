@@ -93,4 +93,15 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
         return t;
     }
 
+    @Override
+    public void save(T t) {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        // 根据主键id查询某个对象
+        session.save(t);
+        transaction.commit();
+
+    }
+
+
 }

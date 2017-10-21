@@ -22,6 +22,10 @@ public class StaffDaoImpl extends BaseDaoImpl<Staff> implements StaffDao {
         StringBuffer stringBuffer = new StringBuffer(hql);
         Object departId = params.get("department_id");
         Object postId = params.get("post_id");
+        Object sname = params.get("sname");
+        if (sname != null){
+            stringBuffer.append(" and sname like :sname");
+        }
         if (!departId.equals("-1")) {
             stringBuffer.append(" and department_id like :department_id");
         }else {

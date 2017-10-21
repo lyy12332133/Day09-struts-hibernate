@@ -46,4 +46,6 @@ public interface BaseDao<T> {
      * @return 返回单个对象
      */
     T findById(Serializable id, Class<T> tClass);
+
+    void save(T t);
 }

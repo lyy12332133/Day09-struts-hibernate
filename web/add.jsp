@@ -2,73 +2,43 @@
 <%--
   Created by IntelliJ IDEA.
   User: dllo
-  Date: 17/10/20
-  Time: 上午10:50
+  Date: 17/10/21
+  Time: 下午2:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>员工列表</title>
+    <title>添加员工</title>
     <script src="JQ3.2.1.js"></script>
     <style>
-        table {
-            width: 485px;
-            text-align: center;
-        }
         button {
             font-size: 18px;
             width: 90px;
             height: 25px;
         }
-        #div1{
-            width: 485px;
-            text-align: right;
-        }
-        input{
-            width: 100px;
-        }
     </style>
 </head>
 <body>
-<h1>员工列表</h1>
-<form action="findStaff.action" method="post">
-    <div id="div1">
-        <button type="submit">高级查询</button>
-        <button type="button" onclick="openpage()">添加</button>
-        <hr>
-        <div>
-            部门: <select name="departId" id="department">
-            <option value="-1">---请选择---</option>
-        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            职务: <select name="postId" id="post">
-            <option value="-1">---请选择---</option>
-        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            姓名: <input type="text" name="sname">
-        </div>
-    </div>
-
-
+<h1>添加员工</h1>
+<form action="addStaff.action" method="post">
+    姓名: <input type="text" name="sname"> <br>
+    部门: <select name="departId" id="department">
+    <option value="-1">---请选择---</option>
+</select><br>
+    职务: <select name="postId" id="post">
+    <option value="-1">---请选择---</option>
+</select><br>
+    验证码: <input type="text" name="code"> <img id="img1" src="${pageContext.request.contextPath}/codeImg.action">
+    <br>
+    <button type="submit">添加员工</button>
 </form>
-<table border="1">
-    <tr>
-        <th>编号</th>
-        <th>姓名</th>
-        <th>部门</th>
-        <th>职务</th>
-    </tr>
-    <s:iterator value="staffs" var="staff">
-        <tr>
-            <td>${staff.id}</td>
-            <td>${staff.sname}</td>
-            <td>${staff.department.dname}</td>
-            <td>${staff.post.pname}</td>
-        </tr>
-    </s:iterator>
-</table>
+<s:fielderror/>
 <script>
-
     $(function () {
+        $("#img1").click(function () {
+            this.src = "${pageContext.request.contextPath}/codeImg.action?a="+Math.random();
+        })
         $.post("${pageContext.request.contextPath}/findDepart.action",
                 null,
                 function (data) {
@@ -95,9 +65,6 @@
                     "json");
         });
     });
-    function openpage(){
-        window.location.replace("/add.jsp");
-    }
 </script>
 </body>
 </html>

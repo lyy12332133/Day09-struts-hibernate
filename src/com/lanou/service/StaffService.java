@@ -32,4 +32,5 @@ public interface StaffService {
      */
     Staff findSingle(String hql, Map<String, Object> params);
 
+    void save(Staff staff);
 }
