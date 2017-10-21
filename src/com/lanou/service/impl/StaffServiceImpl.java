@@ -24,7 +24,6 @@ public class StaffServiceImpl implements StaffService{
         return staffDao.findAll(hql);
     }
 
-
     public List<Staff> find(Map<String, Object> params) {
         return staffDao.find(params);
     }

@@ -10,9 +10,7 @@ import com.lanou.domain.Department;
 import com.lanou.domain.Post;
 import com.lanou.domain.Staff;
 import com.lanou.service.DepartmentService;
-import com.lanou.service.PostService;
 import com.lanou.service.impl.DepartmentServiceImpl;
-import com.lanou.service.impl.PostServiceImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -52,21 +50,21 @@ public class MainTest {
         department.getPosts().add(post2);
         session.save(department); //保存教学部
         /*-------------------------------------------------*/
-//        Department department1 = new Department("职规部");
-//        Post post3 = new Post("职规主管");
-//        Post post4 = new Post("班主任");
-//        department1.getPosts().add(post3);
-//        department1.getPosts().add(post4);
-//        session.save(department1); // 保存职规部
-//        /*-------------------------------------------------*/
-//        Staff staff = new Staff("洋洋");
-//        Staff staff1 = new Staff("静香");
-//        staff.setDepartment(department);
-//        staff.setPost(post);
-//        staff1.setDepartment(department1);
-//        staff1.setPost(post3);
-//        session.save(staff); // 保存员工洋洋
-//        session.save(staff1); // 保存员工静香
+        Department department1 = new Department("职规部");
+        Post post3 = new Post("职规主管");
+        Post post4 = new Post("班主任");
+        department1.getPosts().add(post3);
+        department1.getPosts().add(post4);
+        session.save(department1); // 保存职规部
+        /*-------------------------------------------------*/
+        Staff staff = new Staff("洋洋");
+        Staff staff1 = new Staff("静香");
+        staff.setDepartment(department);
+        staff.setPost(post);
+        staff1.setDepartment(department1);
+        staff1.setPost(post3);
+        session.save(staff); // 保存员工洋洋
+        session.save(staff1); // 保存员工静香
 
         transaction.commit(); // 提交事物
     }
@@ -104,12 +102,12 @@ public class MainTest {
     }
 
     @Test
-    public void testService(){
+    public void testService() {
         DepartmentService departmentService = new DepartmentServiceImpl();
         List<Department> departments = departmentService.findAll();
         for (Department department : departments) {
             System.out.println(department);
-            System.out.println("7777777"+department.getPosts());
+            System.out.println("7777777" + department.getPosts());
         }
     }
 }

@@ -16,16 +16,19 @@
             width: 485px;
             text-align: center;
         }
+
         button {
             font-size: 18px;
             width: 90px;
             height: 25px;
         }
-        #div1{
+
+        #div1 {
             width: 485px;
             text-align: right;
         }
-        input{
+
+        input {
             width: 100px;
         }
     </style>
@@ -95,7 +98,7 @@
                     "json");
         });
     });
-    function openpage(){
+    function openpage() {
         window.location.replace("/add.jsp");
     }
 </script>

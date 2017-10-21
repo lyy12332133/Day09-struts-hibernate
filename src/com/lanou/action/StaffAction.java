@@ -27,11 +27,11 @@ public class StaffAction extends ActionSupport {
     private Set<Post> posts;
     private List<Staff> staffs;
     private List<Department> departments;
+
     /**
      * 加载所有部门
-     * @return 返回部门集合
      */
-    public String findDepart(){
+    public String findDepart() {
         DepartmentService departmentService = new DepartmentServiceImpl();
         departments = departmentService.findAll();
         // 将部门集合放入request对象中的属性集合中
@@ -40,7 +40,6 @@ public class StaffAction extends ActionSupport {
 
     /**
      * 通过部门id加载所有职务
-     * @return 返回职务集合
      */
     public String findPost() {
         DepartmentService departmentService = new DepartmentServiceImpl();
@@ -51,15 +50,14 @@ public class StaffAction extends ActionSupport {
 
     /**
      * 模糊查询员工
-     * @return 返回员工集合
      */
     public String findStaff() {
         StaffService staffService = new StaffServiceImpl();
         Map<String, Object> params = new HashMap<>();
         params.put("department_id", departId);
         params.put("post_id", postId);
-        if (sname.trim().length() > 0){
-            params.put("sname",sname);
+        if (sname.trim().length() > 0) {
+            params.put("sname", sname);
         }
         staffs = staffService.find(params);
         return SUCCESS;
@@ -67,9 +65,8 @@ public class StaffAction extends ActionSupport {
 
     /**
      * 加载所有员工
-     * @return 返回员工集合
      */
-    public String findStaffs(){
+    public String findStaffs() {
         StaffService staffService = new StaffServiceImpl();
         staffs = staffService.findAll();
         return SUCCESS;
@@ -78,7 +75,7 @@ public class StaffAction extends ActionSupport {
     /**
      * 添加员工
      */
-    public String addStaff(){
+    public String addStaff() {
         DepartmentService departmentService = new DepartmentServiceImpl();
         Department department = departmentService.findById(Integer.parseInt(departId));
         Set<Post> posts = department.getPosts();
@@ -87,7 +84,7 @@ public class StaffAction extends ActionSupport {
         staff.setDepartment(department);
         for (Post post : posts) {
             int pid = post.getId();
-            if (postId.equals(String.valueOf(pid))){
+            if (postId.equals(String.valueOf(pid))) {
                 staff.setPost(post);
             }
         }
@@ -99,19 +96,19 @@ public class StaffAction extends ActionSupport {
     /**
      * 添加员工表单校验
      */
-    public void validateAddStaff(){
-        if (sname.trim().length() == 0){
-            addFieldError("error","用户名不能为空");
+    public void validateAddStaff() {
+        if (sname.trim().length() == 0) {
+            addFieldError("error", "用户名不能为空");
         }
-        if (departId.equals("-1")){
-            addFieldError("error","请选择部门");
+        if (departId.equals("-1")) {
+            addFieldError("error", "请选择部门");
         }
-        if (postId.equals("-1")){
-            addFieldError("error","请选择职务");
+        if (postId.equals("-1")) {
+            addFieldError("error", "请选择职务");
         }
         Object code1 = ServletActionContext.getRequest().getSession().getAttribute("code");
-        if (!code.equalsIgnoreCase(String.valueOf(code1))){
-            addFieldError("error","验证码输入有误");
+        if (!code.equalsIgnoreCase(String.valueOf(code1))) {
+            addFieldError("error", "验证码输入有误");
         }
     }
 

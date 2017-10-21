@@ -14,6 +14,7 @@ import java.util.Map;
 public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements DepartmentDao {
     /**
      * 通过部门id查找部门
+     *
      * @param departId 部门id
      * @return 返回包含职务的部门
      */

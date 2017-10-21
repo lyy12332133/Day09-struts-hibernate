@@ -15,16 +15,16 @@ import java.util.Map;
 /**
  * Created by dllo on 17/10/20.
  */
-public class BaseDaoImpl<T> implements BaseDao<T>{
+public class BaseDaoImpl<T> implements BaseDao<T> {
     private static SessionFactory sessionFactory;
 
     static {
         sessionFactory = new Configuration().configure().buildSessionFactory();
-
     }
 
     /**
      * 查询所有
+     *
      * @param hql 查询语句
      * @return 返回结果集
      */
@@ -39,8 +39,9 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
     }
 
     /**
-     *  条件查询
-     * @param hql 查询语句
+     * 条件查询
+     *
+     * @param hql    查询语句
      * @param params 查询语句的参数列表
      * @return 返回结果集
      */
@@ -50,11 +51,11 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery(hql);
         // 设置参数列表
-        if (params != null && !params.isEmpty()){
+        if (params != null && !params.isEmpty()) {
             // 遍历参数
             for (String key : params.keySet()) {
                 // 设置查询语句中的key域value
-                query.setParameter(key,params.get(key));
+                query.setParameter(key, params.get(key));
             }
         }
         List<T> tList = query.list();
@@ -64,14 +65,15 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 
     /**
      * 条件查询
-     * @param hql 查询语句
+     *
+     * @param hql    查询语句
      * @param params 查询语句的参数列表
      * @return 返回单个对象
      */
     @Override
     public T findSingle(String hql, Map<String, Object> params) {
         List<T> tList = find(hql, params); // 调用条件查询
-        if (tList.size() > 0){
+        if (tList.size() > 0) {
             return tList.get(0); //返回查询结果集的第一个对象
         }
         return null; // 查询结果为空时返回null
@@ -79,7 +81,8 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 
     /**
      * 条件查询
-     * @param id 要查询的主键id
+     *
+     * @param id     要查询的主键id
      * @param tClass 返回对象的类声明
      * @return 返回单个对象
      */

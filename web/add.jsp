@@ -37,7 +37,7 @@
 <script>
     $(function () {
         $("#img1").click(function () {
-            this.src = "${pageContext.request.contextPath}/codeImg.action?a="+Math.random();
+            this.src = "${pageContext.request.contextPath}/codeImg.action?a=" + Math.random();
         })
         $.post("${pageContext.request.contextPath}/findDepart.action",
                 null,

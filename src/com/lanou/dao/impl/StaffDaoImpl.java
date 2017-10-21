@@ -12,6 +12,7 @@ import java.util.Map;
 public class StaffDaoImpl extends BaseDaoImpl<Staff> implements StaffDao {
     /**
      * 模糊查询员工表
+     *
      * @param params 查询语句的参数列表
      * @return 返回员工集合
      */
@@ -23,17 +24,17 @@ public class StaffDaoImpl extends BaseDaoImpl<Staff> implements StaffDao {
         Object departId = params.get("department_id");
         Object postId = params.get("post_id");
         Object sname = params.get("sname");
-        if (sname != null){
+        if (sname != null) {
             stringBuffer.append(" and sname like :sname");
         }
         if (!departId.equals("-1")) {
             stringBuffer.append(" and department_id like :department_id");
-        }else {
+        } else {
             params.remove("department_id");
         }
         if (!postId.equals("-1")) {
             stringBuffer.append(" and post_id like :post_id");
-        }else {
+        } else {
             params.remove("post_id");
         }
         return super.find(stringBuffer.toString(), params);

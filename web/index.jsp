@@ -7,10 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>欢迎页</title>
-  </head>
-  <body>
-  <a href="findStaffs.action">跳转到员工列表</a>
-  </body>
+</head>
+<body>
+<a href="findStaffs.action">跳转到员工列表</a>
+</body>
 </html>
