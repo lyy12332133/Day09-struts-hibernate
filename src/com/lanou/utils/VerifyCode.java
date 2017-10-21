@@ -1,4 +1,4 @@
-package com.lanou.lunch;
+package com.lanou.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

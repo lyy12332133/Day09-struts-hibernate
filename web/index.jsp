@@ -12,6 +12,5 @@
   </head>
   <body>
   <a href="findStaffs.action">跳转到员工列表</a>
-  <a href="login.jsp">验证码</a>
   </body>
 </html>

@@ -1,4 +1,4 @@
-package com.lanou.lunch;
+package com.lanou.utils;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.Result;

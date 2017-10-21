@@ -8,12 +8,12 @@
     <package name="Day09" extends="json-default">
 
         <result-types>
-            <result-type name="codeimg" class="com.lanou.lunch.CodeImgResult"/>
+            <result-type name="codeimg" class="com.lanou.utils.CodeImgResult"/>
         </result-types>
         <action name="codeImg">
             <result type="codeimg" name="success"/>
         </action>
-        <action name="login" class="com.lanou.lunch.LoginAction" method="login">
+        <action name="login" class="com.lanou.utils.LoginAction" method="login">
             <result name="success">/success.jsp</result>
             <result name="input">/login.jsp</result>
         </action>
